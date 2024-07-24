@@ -1,0 +1,13 @@
+# python generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# editor generated files
+.idea/
+
+# venv
+.venv
