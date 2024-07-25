@@ -1,9 +1,10 @@
-from typing import Literal
 from math import factorial
-from rich.progress import Progress, TaskID, BarColumn, TextColumn, MofNCompleteColumn
 from time import sleep
+from typing import Literal
 
-from prisoners_dilemma.agents import random, tit_for_tat
+from rich.progress import Progress, TaskID, BarColumn, TextColumn, MofNCompleteColumn
+
+from prisoners_dilemma.agents import tit_for_tat, random
 
 AGENTS: list = [random, tit_for_tat]
 
