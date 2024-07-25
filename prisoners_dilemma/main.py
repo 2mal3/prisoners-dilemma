@@ -1,4 +1,3 @@
-from math import factorial
 from time import sleep
 from typing import Literal
 
@@ -16,7 +15,7 @@ def main():
     tasks: dict[str, TaskID] = {}
     for agent in AGENTS:
         agent_name = agent.__name__.split(".")[-1]
-        tasks[agent_name] = progress.add_task(agent_name, total=factorial(len(AGENTS)) * 200)
+        tasks[agent_name] = progress.add_task(agent_name, total=200 * 5)
     progress.start()
 
     combinations = _get_combinations(AGENTS)
@@ -37,8 +36,9 @@ def main():
             results[agent2_name] = 0
         results[agent2_name] += agent2_points
         # Update progress
-        progress.update(tasks[agent1_name], completed=results[agent1_name])
-        progress.update(tasks[agent2_name], completed=results[agent2_name])
+        for agent_name, points in results.items():
+            total = max(results.values()) + 200
+            progress.update(tasks[agent_name], completed=points, total=total)
         sleep(1)
 
     progress.stop()
