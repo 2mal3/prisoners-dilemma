@@ -5,9 +5,20 @@ description = "Add your description here"
 authors = [
     { name = "2mal3", email = "56305732+2mal3@users.noreply.github.com" }
 ]
-dependencies = []
+dependencies = [
+    "rich==13.7.*",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+# Rules are explained here: https://docs.astral.sh/ruff/rules
+select = ["E4", "E7", "E9", "F", "C", "N", "A", "SIM", "PL"]
+ignore = ["F403"]
 
 [build-system]
 requires = ["hatchling"]
@@ -18,8 +29,11 @@ virtual = true
 managed = true
 dev-dependencies = []
 
+[tool.rye.scripts]
+dev = "python -m prisoners_dilemma.main"
+
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/prisoners_dilemma"]
+packages = ["prisoners_dilemma"]
