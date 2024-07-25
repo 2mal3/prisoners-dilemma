@@ -16,7 +16,7 @@ def main():
     tasks: dict[str, TaskID] = {}
     for agent in AGENTS:
         agent_name = agent.__name__.split(".")[-1]
-        tasks[agent_name] = progress.add_task(agent_name, total=factorial(len(AGENTS)) * 200 * 5)
+        tasks[agent_name] = progress.add_task(agent_name, total=factorial(len(AGENTS)) * 200)
     progress.start()
 
     combinations = _get_combinations(AGENTS)
