@@ -47,7 +47,7 @@ def main():
     results = dict(sorted(results.items(), key=lambda item: item[1], reverse=True))
     print("\nResults:")
     for agent_name, points in results.items():
-        print(f" - {agent_name:<15}: {points}")
+        print(f" - {agent_name:<20}: {points}")
 
 
 def _play_game(agent1, agent2) -> tuple[int, int]:
