@@ -9,6 +9,7 @@
 #   generate-hashes: false
 #   universal: false
 
+beartype==0.18.5
 markdown-it-py==3.0.0
     # via rich
 mdurl==0.1.2

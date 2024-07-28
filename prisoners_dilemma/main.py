@@ -1,6 +1,7 @@
 from time import sleep
 from typing import Literal
 
+from beartype.door import die_if_unbearable
 from rich.progress import Progress, TaskID, BarColumn, TextColumn, MofNCompleteColumn
 
 from prisoners_dilemma.agents import tit_for_tat, random
@@ -9,8 +10,7 @@ AGENTS: list = [random, tit_for_tat]
 
 
 def main():
-    results: dict[str, int] = {}
-
+    # Cool looking progress bar
     progress = Progress(TextColumn("[progress.description]{task.description}"), BarColumn(), MofNCompleteColumn())
     tasks: dict[str, TaskID] = {}
     for agent in AGENTS:
@@ -18,6 +18,8 @@ def main():
         tasks[agent_name] = progress.add_task(agent_name, total=200 * 5)
     progress.start()
 
+    # The actual game
+    results: dict[str, int] = {}
     combinations = _get_combinations(AGENTS)
     for combination in combinations:
         # One Game
@@ -59,6 +61,9 @@ def _play_game(agent1, agent2) -> tuple[int, int]:
     for _ in range(200):
         agent1_action = agent1.act(agent1_actions, agent2_actions)
         agent2_action = agent2.act(agent2_actions, agent1_actions)
+        # Check if the returned values are valid
+        die_if_unbearable(agent1_action, Literal["C", "D"])
+        die_if_unbearable(agent2_action, Literal["C", "D"])
 
         agent1_round_points, agent2_round_points = _get_points_for_actions(agent1_action, agent2_action)
         agent1_points += agent1_round_points
@@ -93,4 +98,6 @@ def _get_combinations(elements: list) -> tuple[tuple[int, int], ...]:
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    combinations = _get_combinations(AGENTS)
+    print(combinations)
