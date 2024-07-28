@@ -58,7 +58,7 @@ def _play_game(agent1, agent2) -> tuple[int, int]:
     agent1_points = 0
     agent2_points = 0
 
-    for _ in range(200):
+    for _ in range(201):
         agent1_action = agent1.act(agent1_actions, agent2_actions)
         agent2_action = agent2.act(agent2_actions, agent1_actions)
         # Check if the returned values are valid
