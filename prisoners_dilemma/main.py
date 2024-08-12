@@ -98,6 +98,4 @@ def _get_combinations(elements: list) -> tuple[tuple[int, int], ...]:
 
 
 if __name__ == "__main__":
-    # main()
-    combinations = _get_combinations(AGENTS)
-    print(combinations)
+    main()
