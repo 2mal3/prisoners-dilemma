@@ -21,27 +21,28 @@ def main():
     # The actual game
     results: dict[str, int] = {}
     combinations = _get_combinations(AGENTS)
-    for combination in combinations:
-        # One Game
-        agent1 = AGENTS[combination[0]]
-        agent2 = AGENTS[combination[1]]
-        agent1_points, agent2_points = _play_game(agent1, agent2)
+    for _ in range(5):
+        for combination in combinations:
+            # One Game
+            agent1 = AGENTS[combination[0]]
+            agent2 = AGENTS[combination[1]]
+            agent1_points, agent2_points = _play_game(agent1, agent2)
 
-        agent1_name = agent1.__name__.split(".")[-1]
-        agent2_name = agent2.__name__.split(".")[-1]
+            agent1_name = agent1.__name__.split(".")[-1]
+            agent2_name = agent2.__name__.split(".")[-1]
 
-        # Save stats
-        if agent1_name not in results:
-            results[agent1_name] = 0
-        results[agent1_name] += agent1_points
-        if agent2_name not in results:
-            results[agent2_name] = 0
-        results[agent2_name] += agent2_points
-        # Update progress
-        for agent_name, points in results.items():
-            total = max(results.values()) + 200
-            progress.update(tasks[agent_name], completed=points, total=total)
-        sleep(1)
+            # Save stats
+            if agent1_name not in results:
+                results[agent1_name] = 0
+            results[agent1_name] += agent1_points
+            if agent2_name not in results:
+                results[agent2_name] = 0
+            results[agent2_name] += agent2_points
+            # Update progress
+            for agent_name, points in results.items():
+                total = max(results.values()) + 200
+                progress.update(tasks[agent_name], completed=points, total=total)
+            sleep(0.5)
 
     progress.stop()
 
