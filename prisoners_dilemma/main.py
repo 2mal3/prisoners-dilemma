@@ -42,7 +42,7 @@ def main():
             for agent_name, points in results.items():
                 total = max(results.values()) + 200
                 progress.update(tasks[agent_name], completed=points, total=total)
-            sleep(0.5)
+            sleep(0.1)
 
     progress.stop()
 
